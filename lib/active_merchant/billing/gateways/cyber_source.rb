@@ -623,6 +623,9 @@ module ActiveMerchant #:nodoc:
         if cc_brand == :visa
           xid = threeds_2_options[:xid] || threeds_2_options[:cavv]
           xml.tag!('xid', xid) if xid
+        else
+          xid = threeds_2_options[:xid]
+          xml.tag!('xid', xid) if xid && threeds_2_options[:version] != '2.0'
         end
 
         xml.tag!('veresEnrolled', threeds_2_options[:enrolled]) if threeds_2_options[:enrolled]
