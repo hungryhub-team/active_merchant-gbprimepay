@@ -941,7 +941,7 @@ class CyberSourceTest < Test::Unit::TestCase
     )
 
     stub_comms do
-      @gateway.purchase(@amount, @master_credit_card, options_with_normalized_3ds)
+      @gateway.purchase(@amount, @credit_card, options_with_normalized_3ds)
     end.check_request do |endpoint, data, headers|
       assert_match(/<xid\>#{cavv}/, data)
     end.respond_with(successful_purchase_response)
@@ -960,7 +960,7 @@ class CyberSourceTest < Test::Unit::TestCase
     )
 
     stub_comms do
-      @gateway.purchase(@amount, @master_credit_card, options_with_normalized_3ds)
+      @gateway.purchase(@amount, @credit_card, options_with_normalized_3ds)
     end.check_request do |endpoint, data, headers|
       assert_match(/<xid\>this-is-an-xid/, data)
     end.respond_with(successful_purchase_response)
